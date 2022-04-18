@@ -1,0 +1,34 @@
+.header {
+  background-color: #92c9b1;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 100;
+}
+.wrapper {
+  padding: 10px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.main {
+  background-color: #a2faa3;
+}
+.pagination {
+  padding: 20px 0;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+}
