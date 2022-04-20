@@ -14,36 +14,22 @@ import {
 
 import styled from "../styles/main.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import {setRepos} from "./_app";
 import {getRepos} from "../store/actions";
 
 
 export default function Home() {
-  // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const data = useSelector(state => state.items)
 
-
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  const getRepos = (dispatch) => {
-    return async (dispatch)=>{
-      const response = await axios.get("https://run.mocky.io/v3/62fb6739-d3df-48c7-a91d-7950c8aaee6c")
-      dispatch({type:"SET_REPOS", payload:response.data})
-      console.log("response:",response.data)
-    }
-  };
-
-
   useEffect(() => {
     dispatch(getRepos())
   }, [dispatch]);
-
 
   return (
     <>
