@@ -25,17 +25,17 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const data = useSelector(state => state.items)
-  console.log("data:", data)
+
 
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  const getRepos = () => {
+  const getRepos = (dispatch) => {
     return async (dispatch)=>{
       const response = await axios.get("https://run.mocky.io/v3/62fb6739-d3df-48c7-a91d-7950c8aaee6c")
-      console.log("response: ",response.data)
-      dispatch((repos)=>({type:"SET_REPOS", payload:[response.data]}))
+      dispatch({type:"SET_REPOS", payload:response.data})
+      console.log("response:",response.data)
     }
   };
 

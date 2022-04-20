@@ -10,16 +10,20 @@ const defState = {
   items: [],
 };
 
+export const setRepos=(repos)=>({type:SET_REPOS,payload:repos})
+
 const reducer = (state=defState, { type, payload }) => {
+  console.log("type:", type)
+  console.log("payload:", payload)
   switch (type) {
     case SET_REPOS:
-      return { ...state, items: payload.items };
+      return { ...state, items: payload};
+
     default:
       return state;
   }
 };
 
-export const setRepos=(repos)=>({type:SET_REPOS,payload:repos})
 
 
 
