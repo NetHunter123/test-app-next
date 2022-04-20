@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -14,40 +13,37 @@ import {
 } from "@mui/material";
 
 import styled from "../styles/main.module.css";
-import handler from "./api/hello";
-import axios from "axios";
-import { createStore } from "redux";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import {setRepos} from "./_app";
+import {getRepos} from "../store/actions";
+
 
 export default function Home() {
   // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const data = useSelector(state => state.data);
-  // console.log("state2:", state);
+  const data = useSelector(state => state.items)
+  console.log("data:", data)
 
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://run.mocky.io/v3/62fb6739-d3df-48c7-a91d-7950c8aaee6c")
-  //     .then((response) => {
-  //       // -------------------------------------------------------------------
-  //       setTimeout(() => {
-  //         setData(response.data);
-  //       }, 0);
-  //       setTimeout(() => {
-  //         setLoading(false);
-  //       }, 0);
-  //       // -----------------------------------------------------------------
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  const getRepos = () => {
+    return async (dispatch)=>{
+      const response = await axios.get("https://run.mocky.io/v3/62fb6739-d3df-48c7-a91d-7950c8aaee6c")
+      console.log("response: ",response.data)
+      dispatch((repos)=>({type:"SET_REPOS", payload:[response.data]}))
+    }
+  };
+
+
+  useEffect(() => {
+    dispatch(getRepos())
+  }, [dispatch]);
+
 
   return (
     <>
