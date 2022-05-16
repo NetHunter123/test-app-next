@@ -18,10 +18,11 @@ import {getRepos} from "../store/actions";
 
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const data = useSelector(state => state.items)
+  const loading = useSelector(state => state.loading)
 
   const handleChange = (event, value) => {
     setPage(value);
